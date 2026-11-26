@@ -87,14 +87,38 @@ Kandidat yang dipertimbangkan dan DITOLAK karena sudah ada di field:
 - .makefun/owner.json: wallet agen
   6VbyMydGEMzmZiH5YPxJWj7HNeJNg1ZnYBJ8yUcqv4zG.
 
-## Kit CLI check
+## Kit CLI check (v1, 26 Nov ~17:35 WIB / 10:35 UTC, tanpa bundle)
 
-(hasil check dicatat di sini setelah dijalankan; lihat bagian bawah.)
+`node cli/makefun.mjs check --kit . --repo ../u-coral-404-one-liner-laughs-aa872d41 --json`
+— 24 baris: 4 pass, 1 fail, 14 skip, 5 submission. Output lengkap:
+`../u-coral-404-one-liner-laughs-aa872d41-kit/check-v1.json`.
 
-## Kuota submit
+- PASS: competition_open, snapshot (intake caps), license_osi (MIT),
+  entrypoint (main.py di root).
+- FAIL: transcripts_present — "No transcripts parsed" (tidak ada
+  --transcripts; bundle transkrip adalah tugas parent/seal, BUKAN
+  builder). Inilah satu-satunya fail, dan polanya sama seperti entry
+  sebelumnya: check ulang setelah re-bundle diharapkan 14/14.
+- SKIP (14): semua baris transcript-gate (thinking_turns,
+  thinking_priced, thinking_revised, thinking_in_window,
+  thinking_fresh, thinking_own_work, transcripts_run_record, dll.)
+  — "no transcript session parsed, so there is nothing to check".
+- SUBMISSION (5, diverifikasi situs saat submit, bukan fail):
+  repo_public, repo_owner, repo_created_after_open, commit_in_repo,
+  duplicate_snapshot. Semua sudah diverifikasi manual: repo PUBLIC
+  (gh api private=false), owner epanpai + .makefun/owner.json wallet
+  agen ter-commit, repo dibuat 2026-11-26T10:29:49Z (setelah buka
+  07:09:11Z), commit b771f9b27286a51e6be56bb13cc7c38d99158f2f
+  ter-push ke main, file main.py ada di GitHub (blob
+  223c90c2b41d549e5eef5a8102d9a4477c647f59).
 
-(hasil GET /api/competitions/<slug>/quota dicatat di sini setelah
-dicek; lihat bagian bawah.)
+## Kuota submit (26 Nov ~17:34 WIB)
+
+GET /api/competitions/u-coral-404-one-liner-laughs-aa872d41/quota:
+can_submit TRUE. Day cap 5, taken 0, left 5 (reset 2026-11-27T00:00Z).
+entries_made 0. blind_round_slot available=true, interval berakhir
+2026-11-26T15:09:27Z (22:09 WIB). File:
+~/workspace/makefun/u-coral-404-one-liner-laughs-aa872d41-quota.json
 
 ## STATUS: BELUM SUBMIT — menunggu parent
 
